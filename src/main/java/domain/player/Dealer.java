@@ -48,7 +48,6 @@ public class Dealer extends Participant {
         }
 
         return competeByScore(player.calculateScore());
-
     }
 
     private Result competeByScore(int playerScore) {
@@ -64,16 +63,28 @@ public class Dealer extends Participant {
         return Result.DRAW;
     }
 
+    private int calculatePlayersProfit() {
+        return playerResults.keySet().stream()
+                .mapToInt(player -> calculatePlayerProfit(player).getMoney())
+                .sum();
+    }
+
+    private BettingMoney calculatePlayerProfit(Player player) {
+        return player.calculateProfitBy(playerResults.get(player));
+    }
+
+    public void payOutToPlayers() {
+        playerResults.keySet().forEach(this::payOutTo);
+    }
+
+    private void payOutTo(Player player) {
+        player.applyRevenue(calculatePlayerProfit(player));
+    }
+
     public int getProfit() {
         int playersProfit = calculatePlayersProfit();
 
         return playersProfit * SIGN_REVERSE;
-    }
-
-    private int calculatePlayersProfit() {
-        return playerResults.keySet().stream()
-                .mapToInt(Player::getMoney)
-                .sum();
     }
 
     public Card getFirstCard() {

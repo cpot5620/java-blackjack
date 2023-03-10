@@ -143,7 +143,8 @@ public class OutputView {
     }
 
     private void printPlayerProfit(Player player, Result result) {
-        String message = String.format(Format.RESULT.format, player.getName(), player.calculateProfitBy(result));
+        String message = String.format(Format.RESULT.format,
+                player.getName(), player.calculateProfitBy(result).getMoney());
         System.out.println(message);
     }
 

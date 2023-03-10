@@ -108,6 +108,7 @@ public class BlackjackController {
         Dealer dealer = blackjackGame.getDealer();
         outputView.printCardsWithScore(dealer, players);
         outputView.printFinalResult(dealer);
+        dealer.payOutToPlayers();
     }
 
     private <T> T retryOnInvalidUserInput(Supplier<T> request) {

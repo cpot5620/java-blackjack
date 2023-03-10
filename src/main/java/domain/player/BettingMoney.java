@@ -52,6 +52,10 @@ public class BettingMoney {
         return new BettingMoney(profit);
     }
 
+    public BettingMoney updateRevenue(BettingMoney profit) {
+        return new BettingMoney(money.add(profit.money));
+    }
+
     public int getMoney() {
         return money.intValue();
     }
