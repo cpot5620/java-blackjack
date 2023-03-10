@@ -72,7 +72,7 @@ public class Dealer extends Participant {
 
     private int calculatePlayersProfit() {
         return playerResults.keySet().stream()
-                .mapToInt(player -> player.calculateProfitBy(playerResults.get(player)))
+                .mapToInt(Player::getMoney)
                 .sum();
     }
 

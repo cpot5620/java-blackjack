@@ -101,6 +101,7 @@ public class OutputView {
 
         dealer.getGameResult().forEach(this::printPlayerResult);
 
+
         printFinalProfit(dealer);
     }
 
