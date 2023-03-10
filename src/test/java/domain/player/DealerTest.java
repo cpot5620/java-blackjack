@@ -7,6 +7,7 @@ import domain.card.CardShape;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -25,10 +26,11 @@ class DealerTest {
     void decideResultSuccessTest() {
         //given
         Dealer dealer = new Dealer();
+        BigDecimal money = BigDecimal.valueOf(1000);
         Players players = Players.from(
                 List.of(
-                        Player.of(Name.from("pobi"), BettingMoney.from(1000)),
-                        Player.of(Name.from("crong"), BettingMoney.from(1000))
+                        Player.of(Name.from("pobi"), BettingMoney.from(money)),
+                        Player.of(Name.from("crong"), BettingMoney.from(money))
                 )
         );
         Player pobi = players.getPlayers().get(0);
@@ -54,8 +56,9 @@ class DealerTest {
     void decideResultWithBlackjackTest() {
         //given
         Dealer dealer = new Dealer();
+        BigDecimal money = BigDecimal.valueOf(1000);
         Players players = Players.from(
-                List.of(Player.of(Name.from("pobi"), BettingMoney.from(1000)))
+                List.of(Player.of(Name.from("pobi"), BettingMoney.from(money)))
         );
         Player pobi = players.getPlayers().get(0);
 

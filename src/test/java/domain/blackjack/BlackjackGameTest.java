@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,10 +17,11 @@ class BlackjackGameTest {
 
     @BeforeEach
     void setUp() {
+        BigDecimal money = BigDecimal.valueOf(1000);
         players = Players.from(
                 List.of(
-                        Player.of(Name.from("pobi"), BettingMoney.from(1000)),
-                        Player.of(Name.from("crong"), BettingMoney.from(1000))
+                        Player.of(Name.from("pobi"), BettingMoney.from(money)),
+                        Player.of(Name.from("crong"), BettingMoney.from(money))
                 )
         );
         blackjackGame = new BlackjackGame(players);

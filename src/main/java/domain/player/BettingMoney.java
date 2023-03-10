@@ -10,33 +10,32 @@ public class BettingMoney {
 
     private final BigDecimal money;
 
-    private BettingMoney(int money) {
-        this.money = BigDecimal.valueOf(money);
-    }
-
     private BettingMoney(BigDecimal money) {
         this.money = money;
     }
 
-    public static BettingMoney from(int money) {
+    public static BettingMoney from(BigDecimal money) {
         validate(money);
 
         return new BettingMoney(money);
     }
 
-    private static void validate(int money) {
+    private static void validate(BigDecimal money) {
         validateRange(money);
         validateUnit(money);
     }
 
-    private static void validateRange(int money) {
-        if (money < MINIMUM.intValue() || money > MAXIMUM.intValue()) {
+    private static void validateRange(BigDecimal money) {
+        int compareResultWithMinimum = money.compareTo(MINIMUM);
+        int compareResultWithMaximum = money.compareTo(MAXIMUM);
+
+        if (compareResultWithMinimum < 0 || compareResultWithMaximum > 0) {
             throw new IllegalArgumentException(INVALID_RANGE);
         }
     }
 
-    private static void validateUnit(int money) {
-        BigDecimal remainder = BigDecimal.valueOf(money).remainder(MINIMUM);
+    private static void validateUnit(BigDecimal money) {
+        BigDecimal remainder = money.remainder(MINIMUM);
 
         if (!BigDecimal.ZERO.equals(remainder)) {
             throw new IllegalArgumentException(INVALID_UNIT);

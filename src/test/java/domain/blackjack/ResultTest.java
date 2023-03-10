@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
+import java.math.BigDecimal;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ResultTest {
@@ -22,20 +24,20 @@ class ResultTest {
     @ParameterizedTest(name = "게임 결과에 따른 지불 금액을 결정한다.")
     @EnumSource(value = Result.class)
     void updateBalanceSuccessTest(Result result) {
-        int money = 10000;
+        BigDecimal money = BigDecimal.valueOf(10000);
         BettingMoney bettingMoney = BettingMoney.from(money);
 
         assertThat(result.payOut(bettingMoney).getMoney())
-                .isEqualTo((int) (result.getRatio() * money));
+                .isEqualTo((int) (result.getRatio() * money.intValue()));
     }
 
     @DisplayName("블랙잭으로 승리할 경우, 보너스 배당을 적용한다.")
     @Test
     void updateBalanceWithBlackjackSuccessTest() {
-        int money = 10000;
+        BigDecimal money = BigDecimal.valueOf(10000);
         BettingMoney bettingMoney = BettingMoney.from(money);
 
         assertThat(Result.BLACKJACK.payOut(bettingMoney).getMoney())
-                .isEqualTo((int) (Result.BLACKJACK.getRatio() * money));
+                .isEqualTo((int) (Result.BLACKJACK.getRatio() * money.intValue()));
     }
 }

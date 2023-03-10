@@ -5,6 +5,7 @@ import domain.player.*;
 import view.InputView;
 import view.OutputView;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -49,12 +50,12 @@ public class BlackjackController {
 
     private BettingMoney createBettingMoney(Name name) {
         return retryOnInvalidUserInput(
-                () -> BettingMoney.from(readBettingMoney(name))
+                () -> BettingMoney.from((readBettingMoney(name)))
         );
     }
 
-    private int readBettingMoney(Name name) {
-        return inputView.requestBettingMoney(name.getName());
+    private BigDecimal readBettingMoney(Name name) {
+        return BigDecimal.valueOf(inputView.requestBettingMoney(name.getName()));
     }
 
     private void play(BlackjackGame blackjackGame) {

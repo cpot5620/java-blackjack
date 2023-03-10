@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PlayerTest {
@@ -16,7 +18,8 @@ class PlayerTest {
 
     @BeforeEach
     void setUp() {
-        player = Player.of(Name.from("pobi"), BettingMoney.from(10000));
+        BigDecimal money = BigDecimal.valueOf(1000);
+        player = Player.of(Name.from("pobi"), BettingMoney.from(money));
     }
 
     @DisplayName("플레이어는 카드를 받을 수 있다.")
