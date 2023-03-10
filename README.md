@@ -6,7 +6,7 @@
 
 ###### `우아한테크코스 블랙잭 미션을 진행한 저장소 입니다.`
 
-<img src="./docs/image/java-blackjack.gif" width="588">
+<img src="./docs/image/java-blackjack.gif" width="800">
 
 ## 🔍 프로그램 소개
 
