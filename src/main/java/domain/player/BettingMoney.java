@@ -42,8 +42,8 @@ public class BettingMoney {
         }
     }
 
-    public BettingMoney applyRatio(double ratio) {
-        return new BettingMoney(money.multiply(BigDecimal.valueOf(ratio)));
+    public BettingMoney applyRatio(BigDecimal ratio) {
+        return new BettingMoney(money.multiply(ratio));
     }
 
     public BettingMoney calculateProfit(BettingMoney currentMoney) {

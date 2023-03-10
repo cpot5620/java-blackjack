@@ -41,18 +41,18 @@ class BettingMoneyTest {
 
     @ParameterizedTest(name = "배율에 맞게 배팅금액을 돌려받을 수 있다.")
     @MethodSource("moneyAndRatioProvider")
-    void receiveBettingMoneySuccessTest(int money, double ratio) {
-        BettingMoney bettingMoney = BettingMoney.from(BigDecimal.valueOf(money));
+    void receiveBettingMoneySuccessTest(BigDecimal money, BigDecimal ratio) {
+        BettingMoney bettingMoney = BettingMoney.from(money);
 
         assertThat(bettingMoney.applyRatio(ratio).getMoney())
-                .isEqualTo((int) (money * ratio));
+                .isEqualTo((money.multiply(ratio)).intValue());
     }
 
     static Stream<Arguments> moneyAndRatioProvider() {
         return Stream.of(
-                Arguments.arguments(100, 0.0),
-                Arguments.arguments(2000, 1.5),
-                Arguments.arguments(1000000, 2.5)
+                Arguments.arguments(BigDecimal.valueOf(100), BigDecimal.valueOf(0.0)),
+                Arguments.arguments(BigDecimal.valueOf(2000), BigDecimal.valueOf(1.5)),
+                Arguments.arguments(BigDecimal.valueOf(1000000), BigDecimal.valueOf(2.5))
         );
     }
 }

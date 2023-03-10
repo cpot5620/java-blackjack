@@ -28,7 +28,7 @@ class ResultTest {
         BettingMoney bettingMoney = BettingMoney.from(money);
 
         assertThat(result.payOut(bettingMoney).getMoney())
-                .isEqualTo((int) (result.getRatio() * money.intValue()));
+                .isEqualTo((money.multiply(result.getRatio())).intValue());
     }
 
     @DisplayName("블랙잭으로 승리할 경우, 보너스 배당을 적용한다.")
@@ -38,6 +38,6 @@ class ResultTest {
         BettingMoney bettingMoney = BettingMoney.from(money);
 
         assertThat(Result.BLACKJACK.payOut(bettingMoney).getMoney())
-                .isEqualTo((int) (Result.BLACKJACK.getRatio() * money.intValue()));
+                .isEqualTo((money.multiply(Result.BLACKJACK.getRatio())).intValue());
     }
 }
