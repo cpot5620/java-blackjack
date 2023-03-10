@@ -26,17 +26,14 @@ public class Player extends Participant {
         }
     }
 
-    public int calculateProfitBy(Result result) {
+    public BettingMoney calculateProfitBy(Result result) {
         BettingMoney currentMoney = result.payOut(bettingMoney);
-        BettingMoney profit = bettingMoney.calculateProfit(currentMoney);
 
-        updateMoney(currentMoney);
-
-        return profit.getMoney();
+        return bettingMoney.calculateProfit(currentMoney);
     }
 
-    private void updateMoney(BettingMoney bettingMoney) {
-        this.bettingMoney = bettingMoney;
+    public void applyRevenue(BettingMoney profit) {
+        this.bettingMoney = bettingMoney.updateRevenue(profit);
     }
 
     public int getMoney() {
