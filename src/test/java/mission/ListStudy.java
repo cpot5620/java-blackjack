@@ -1,12 +1,8 @@
 package mission;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * mission 패키지는
@@ -42,7 +38,7 @@ public class ListStudy {
         final SimpleList<Integer> intValues = new SimpleArrayList<Integer>(1, 2);
 
         final double doubleTotal = SimpleList.sum(doubleValues); // 1.2
-        final int intTotal = SimpleList.sum(intValues);  // 3
+        final int intTotal = (int) SimpleList.sum(intValues);  // 3
 
         assertThat(doubleTotal).isEqualTo(1.2);
         assertThat(intTotal).isEqualTo(3);
@@ -77,5 +73,8 @@ public class ListStudy {
 }
 
 
-class Printer { }
-class LaserPrinter extends Printer { }
+class Printer {
+}
+
+class LaserPrinter extends Printer {
+}

@@ -1,7 +1,5 @@
 package mission;
 
-import java.util.List;
-
 public interface SimpleList<E> {
 
     boolean add(E value);
@@ -34,36 +32,22 @@ public interface SimpleList<E> {
         return tSimpleArrayList;
     }
 
-    static <T extends Number> T sum(SimpleList<T> values) {
-        if (values.isEmpty()) {
-            return null;
+    static <T extends Number> double sum(SimpleList<T> values) {
+        double sum = 0.0;
+
+        for (int i = 0; i < values.size(); i++) {
+            sum += values.get(i).doubleValue();
+
         }
 
-        T value = values.get(0);
-        if (value instanceof Integer) {
-            Integer sum = 0;
-            for (int i = 0; i < values.size(); i++) {
-                sum += values.get(i).intValue();
-            }
-            return (T) sum;
-        }
-
-        if (value instanceof Double) {
-            Double sum = 0d;
-            for (int i = 0; i < values.size(); i++) {
-                sum += values.get(i).doubleValue();
-            }
-            return (T) sum;
-        }
-
-        throw new UnsupportedOperationException();
+        return sum;
     }
 
     static <T extends Number> SimpleList<T> filterNegative(SimpleList<T> values) {
         SimpleList<T> tmpList = new SimpleArrayList<>();
 
-        for(int i =0; i<values.size(); i++){
-            if(values.get(i).doubleValue() >= 0){
+        for (int i = 0; i < values.size(); i++) {
+            if (values.get(i).doubleValue() >= 0) {
                 tmpList.add(values.get(i));
             }
         }
